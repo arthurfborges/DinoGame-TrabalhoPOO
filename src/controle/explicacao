@@ -1,0 +1,36 @@
+1. Métodos de Movimentação (O "Ir e Vir")
+processarTurno(int linha, int coluna): É o método principal.
+Ele recebe para onde o jogador quer ir e coordena tudo: verifica se é parede, se tem dinossauro (combate) ou se tem caixa (coleta). É o "chefe" do movimento.
+
+ehMovimentoAdjacente(int l1, int c1, int l2, int c2): A função "policial".
+Ela apenas confere se o jogador está tentando se mover apenas para cima, baixo, esquerda ou direita.
+Se ele tentar na diagonal, esse método diz "não pode".
+
+moverJogadorNaGrade(int novaLinha, int novaCol): É o método que faz a troca física.
+Ele apaga o jogador da posição atual e escreve o jogador na nova posição. É a atualização visual da matriz.
+
+2. Métodos de Interação (Onde a mágica acontece)
+iniciarCombate(Jogador p, Dinossauro d): Este método é ativado quando o jogador entra no quadrado de um inimigo.
+Ele gerencia as rodadas de ataque (jogador bate, dinossauro bate).
+
+abrirCaixa(CaixaDeSuprimentos c): Quando o jogador pisa em um quadrado com caixa, esse método roda.
+Ele pega o item que está escondido dentro da caixa e o adiciona ao inventário do jogador, depois remove a caixa do mapa.
+
+3. Métodos dos Dinossauros (O "Mundo Vivo")
+moverDinossaurosAleatoriamente(): Este método percorre toda a matriz procurando por todos os dinossauros (exceto o T-Rex).
+Para cada um que ele acha, ele sorteia uma direção e tenta movê-lo.
+
+moverVelociraptor(Dinossauro v): Um método especial só para o Velociraptor.
+ Como ele anda duas casas, esse método calcula o primeiro passo, checa se encontrou o jogador (se sim, luta!), e, se não, dá o segundo passo.
+
+posicaoEstaLivre(int l, int c): Uma checagem de segurança. Antes de mover um dinossauro, o jogo pergunta:
+"Ei, essa casa está vazia ou já tem outro dinossauro nela?". Se estiver ocupada, ele não move.
+
+Por que organizar assim?
+Se você colocar tudo dentro de um único método enorme, seu código ficará um "espaguete" difícil de consertar. Dividindo assim:
+
+Se o Velociraptor estiver andando errado: Você sabe que o problema está em moverVelociraptor.
+
+Se o jogador estiver atravessando paredes: Você sabe que o problema está em processarTurno ou moverJogadorNaGrade.
+
+Se o combate não estiver funcionando: Você mexe apenas no iniciarCombate.

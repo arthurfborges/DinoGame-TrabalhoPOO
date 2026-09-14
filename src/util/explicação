@@ -1,0 +1,6 @@
+Pacote para ferramentas auxiliares.
+
+Exemplo: GeradorMapa
+ (para criar as paredes e posicionar itens aleatoriamente) e
+ Dado (uma classe simples para
+ simular os rolamentos de dados de 3 ou 6 lados necessários para o combate).

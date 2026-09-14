@@ -1,0 +1,3 @@
+Um subpacote de model para cuidar das "Caixas de Suprimentos".
+ Como as caixas podem conter itens diferentes (kit médico, bastão, dardos),
+  este pacote pode conter uma classe Item e suas variações
